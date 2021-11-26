@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>RESTful Tasks API</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+</head>
+<body>
+
+<section>
+  <div class="container section">
+    <h1 class="center">Restful Tasks API</h1>
+    <div *ngIf="!displayTasks && !viewTask">
+      <div class="row valign-wrapper center">
+        <input type="number" class="col s4 offset-s3"/>
+        <button class="btn brown col s2" (click) = "getTask($event)">Get task by id</button>
+        <div class="col s2"></div>
+      </div>
+      <div class="center">
+        <button class="btn" (click) = "getTasks()">Get all Tasks</button>
+      </div>     
+    </div>
+    <div *ngIf="displayTasks|| viewTask" class="center">
+      <button class="btn" (click) = "hideTasks()">Hide Tasks</button>
+    </div>
+    <div class="section"></div>
+    <div *ngIf="displayTasks">
+      <div *ngFor="let task of tasks">
+        <div class="row valign-wrapper">
+          <h4 class="col s12 l6">Task: {{task['title']}}</h4>
+          <div class="center col s12 l6">
+            <button [name]="task['id']" (click) = "displayTask($event)" class="col s12 l6 btn blue">Show</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div *ngIf="viewTask">
+      <h4>Task: {{task['title']}}</h4>
+      <p>Description: {{task['description']}}</p>
+      <p>Completed: {{task['completed']}}</p>
+    </div>
+  </div>  
+</section> 
+
+
+
+
+
+  
+<!-- 
+
+<h2>All the tasks:</h2>
+<div *ngFor="let task of tasks">
+  <h4>Task: {{task['title']}}</h4>
+  <p>Description: {{task['description']}} </p>
+  <p>Completed: {{task['completed']}} </p>
+</div>
+
+<br>
+
+<h2>The fourth task </h2>
+<h4>Task: {{task.title}}</h4>
+<p>Description: {{task['description']}}</p>
+<p>Completed: {{task['completed']}}</p> -->
+
+<!-- <p>Description: {{task['description']}}</p>
+<p>Completed: {{task['completed']}}</p> -->
+
+
+</body>
+</html>
+
